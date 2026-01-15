@@ -46,7 +46,7 @@ nav a{
     align-items:center;
     text-decoration: none;
     color: var(--text-color);
-    transition: color 0.4 ease, transform 0.3 ease
+    transition: color 0.9 ease, transform 0.7 ease
 }
 
 nav a:hover{
@@ -103,5 +103,6 @@ nav svg{
     }
 
 }
+
 
 
