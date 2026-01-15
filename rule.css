@@ -49,7 +49,8 @@ nav a{
 }
 
 nav a:hover{
-    background-color:var(--accent-color)
+    background-color:var(--accent-color);
+    translate: transformY(-2px)
 }
 nav .home-link{
     margin-left: auto;
@@ -99,4 +100,5 @@ nav svg{
         left: 0;
         z-index: 9;
     }
+
 }
