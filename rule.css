@@ -45,11 +45,13 @@ nav a{
     display: flex;
     align-items:center;
     text-decoration: none;
-    color: var(--text-color)    
+    color: var(--text-color);
+    transition: color 0.9 ease-out;
 }
 
 nav a:hover{
-    background-color:var(--accent-color)
+    background-color:var(--accent-color);
+    transform: scale(1.1)
 }
 nav .home-link{
     margin-left: auto;
@@ -99,4 +101,9 @@ nav svg{
         left: 0;
         z-index: 9;
     }
+
 }
+
+
+
+
