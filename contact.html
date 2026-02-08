@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Kingsmen Guild</title>
+    <link rel="stylesheet" href="contact.css" />
+    <link rel="stylesheet" href="load.css" />
+    <link rel="icon" type="image/jpg" href="logo.jpg">
+</head>
+
+<body>
+    <div id="top-loader"></div>
+    <nav>
+        <input type="checkbox" id="sidebar-active" />
+        <label for="sidebar-active" class="open-sidebar-button">
+            <svg xmlns="http://www.w3.org/2000/svg" height="32px" viewBox="0 -960 960 960" width="32px" fill="#1f1f1f">
+                <path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z" />
+            </svg>
+        </label>
+
+        <label id="overlay" for="sidebar-active"></label>
+        <div class="links-container">
+            <label for="sidebar-active" class="close-sidebar-button">
+                <svg xmlns="http://www.w3.org/2000/svg" height="32px" viewBox="0 -960 960 960" width="32px"
+                    fill="#1f1f1f">
+                    <path
+                        d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
+                </svg>
+            </label>
+
+            <a class="home-link" href="home.html">home</a>
+            <a href="high.html">Highlights</a>
+            <a href="rule.html">Guild rules</a>
+            <a href="contact.html">Contact</a>
+            <a href="index.html">Log out</a>
+        </div>
+    </nav>
+
+    <div class="container">
+
+        <h1>Contact Kingsmen Guild</h1>
+        <p>This page is for <strong>inquiries, support, or issues</strong>.
+            To join the guild, please use the Join Guild page.</p>
+
+        <!-- GUILD CONTACT FORM -->
+        <label>Name</label>
+        <input type="text" id="name" placeholder="Your in-game name">
+
+        <label>Reason for Contact</label>
+        <select id="reason">
+            <option>Inquiries</option>
+            <option>Guild Issues</option>
+            <option>Support</option>
+            <option>Partnership</option>
+        </select>
+
+        <label>Your Message</label>
+        <textarea id="message" placeholder="Type your message here..."></textarea>
+
+        <button onclick="sendGuildMessage()">Chat with Guild Admin</button>
+
+        <div class="note">
+            • No recruitment requests here
+            • Be respectful
+            • Serious messages only
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- SITE CREATOR SECTION -->
+        <h2>Contact Site Creator</h2>
+        <p>
+            Found a bug, loading issue, or have suggestions to improve the website?
+            Contact the site creator directly below.
+        </p>
+
+        <label>Your Name</label>
+        <input type="text" id="creatorName" placeholder="Your name">
+
+        <label>Your Message</label>
+        <textarea id="creatorMessage" placeholder="Describe the issue or suggestion..."></textarea>
+
+        <button onclick="sendCreatorMessage()">Chat with Site Creator</button>
+
+        <p style="margin-top:10px; font-size:14px;">Creator: <strong>ORACLE</strong></p>
+
+    </div>
+
+    <script src="loader.js"></script>
+    <script>
+        function sendGuildMessage() {
+            let name = document.getElementById("name").value;
+            let reason = document.getElementById("reason").value;
+            let message = document.getElementById("message").value;
+
+            let phone = "2347061715640"; // GUILD ADMIN WhatsApp number
+
+            let text =
+                "🔥 KINGS MEN GUILD INQUIRY 🔥\n\n" +
+                "Name: " + name + "\n" +
+                "Reason: " + reason + "\n\n" +
+                "Message:\n" + message;
+
+            let url = "https://wa.me/" + phone + "?text=" + encodeURIComponent(text);
+            window.open(url, "_blank");
+        }
+
+        function sendCreatorMessage() {
+            let name = document.getElementById("creatorName").value;
+            let message = document.getElementById("creatorMessage").value;
+
+            let phone = "2349018526817"; // SITE CREATOR WhatsApp number
+
+            let text =
+                "🛠 WEBSITE CONTACT 🛠\n\n" +
+                "From: " + name + "\n\n" +
+                "Message:\n" + message;
+
+            let url = "https://wa.me/" + phone + "?text=" + encodeURIComponent(text);
+            window.open(url, "_blank");
+        }
+    </script>
+</body>
+
+</html>

@@ -1,91 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <link rel="stylesheet" href="rule.css">
   <link rel="stylesheet" href="load.css">
+  <link rel="icon" type="image/jpg" href="logo.jpg">
 </head>
 
 <body>
   <div id="top-loader"></div>
-  </div>
-    <nav>
-      <input type="checkbox" id="sidebar-active">
-      <label for="sidebar-active" class="open-sidebar-button">
-        <svg xmlns="http://www.w3.org/2000/svg" height="32px" viewBox="0 -960 960 960" width="32px" fill="#1f1f1f"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/></svg>
+  <nav>
+    <input type="checkbox" id="sidebar-active">
+    <label for="sidebar-active" class="open-sidebar-button">
+      <svg xmlns="http://www.w3.org/2000/svg" height="32px" viewBox="0 -960 960 960" width="32px" fill="#1f1f1f">
+        <path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z" />
+      </svg>
+    </label>
+
+    <label id="overlay" for="sidebar-active"></label>
+    <div class="links-container">
+      <label for="sidebar-active" class="close-sidebar-button">
+        <svg xmlns="http://www.w3.org/2000/svg" height="32px" viewBox="0 -960 960 960" width="32px" fill="#1f1f1f">
+          <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
+        </svg>
       </label>
 
-      <label id="overlay" for="sidebar-active"></label>
-      <div class="links-container">
-        <label for="sidebar-active" class="close-sidebar-button">
-          <svg xmlns="http://www.w3.org/2000/svg" height="32px" viewBox="0 -960 960 960" width="32px" fill="#1f1f1f"><path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z"/></svg>
-        </label>
+      <a class="home-link" href="home.html">home</a>
+      <a href="high.html">Highlights</a>
+      <a href="rule.html">Guild rules</a>
+      <a href="contact.html">Contact</a>
+      <a href="index.html">Log out</a>
+    </div>
+  </nav>
+  <span> GUILD 9 GOLDEN COMMANDMENT <br>
+    (亗KING'SMEN亗) <br></span>
 
-        <a class="home-link" href="home.html">Back</a>
-        
-      </div>
-    </nav>
-</div>
- <span> GUILD 9 GOLDEN COMMANDMENT <br>
-       (亗KING'SMEN亗) <br></span>
-
-✓Use of words must be regulated most especially (bot,gay, dragging somebody parents to an argument) <br>
-<br>
-✓Use of guild profile, banner and name tag must be taken very seriously by all members <br>
-<br>
-<br>
-✓ all members must at least play guild wars once in an interval of two weeks (unless reasonable excuses) <br>
-<br>
-✓guild training demands the presence of all members please take seriously (Tuesday and Thursday) <br>
-<br>
-✓ tournament henceforth will be taken 30th of every month with a contribution of #200 and above  <br>
-<br>
-✓ posting of external link for other groups, evidence of betting, (warned twice) <br>
-and any scam practices will warrant immediate removal <br>
-<br>
-✓ maximum respect to all guild members most especially Admins <br>
-<br>
-✓ henceforth creating of content, External guild wars, acceptance of ladies, and promotion of guild will not be taken for granted <br>
-<br>
-✓ Squad wars should at least take place once a week worst case scenario two weeks <br>
-<br>
-<br>
-✓ strict adherence too all guild rules any violation of any kind results to removal 😮‍💨 <br>
-<br>
-<br>
-Council of Admins have spoken and signed By <br>
-<br>
-<br>
-亗GENERAL亗 <br>
-<script>
-    const loader = document.getElementById("top-loader");
-
-    // When the page first loads
-    window.addEventListener("load", () => {
-        loader.style.width = "100%";
-        setTimeout(() => loader.style.opacity = "0", 300);
-    });
-
-    // When clicking any link
-    document.querySelectorAll("a").forEach(link => {
-        link.addEventListener("click", function (e) {
-            // Ignore links like "#" or same page anchors
-            if (this.getAttribute("href").startsWith("#")) return;
-
-            e.preventDefault(); // Stop instant navigation
-            loader.style.opacity = "1";
-            loader.style.width = "30%";
-
-            setTimeout(() => loader.style.width = "70%", 150);
-
-            // Go to the next page after animation
-            setTimeout(() => {
-                window.location.href = this.href;
-            }, 350);
-        });
-    });
-</script>
+  ✓Use of words must be regulated most especially (bot,gay, dragging somebody parents to an argument) <br>
+  <br>
+  ✓Use of guild profile, banner and name tag must be taken very seriously by all members <br>
+  <br>
+  <br>
+  ✓ all members must at least play guild wars once in an interval of two weeks (unless reasonable excuses) <br>
+  <br>
+  ✓guild training demands the presence of all members please take seriously (Tuesday and Thursday) <br>
+  <br>
+  ✓ tournament henceforth will be taken 30th of every month with a contribution of #200 and above <br>
+  <br>
+  ✓ posting of external link for other groups, evidence of betting, (warned twice) <br>
+  and any scam practices will warrant immediate removal <br>
+  <br>
+  ✓ maximum respect to all guild members most especially Admins <br>
+  <br>
+  ✓ henceforth creating of content, External guild wars, acceptance of ladies, and promotion of guild will not be taken
+  for granted <br>
+  <br>
+  ✓ Squad wars should at least take place once a week worst case scenario two weeks <br>
+  <br>
+  <br>
+  ✓ strict adherence too all guild rules any violation of any kind results to removal 😮‍💨 <br>
+  <br>
+  <br>
+  Council of Admins have spoken and signed By <br>
+  <br>
+  <br>
+  亗GENERAL亗 <br>
+  <script src="loader.js"></script>
 </body>
+
 </html>

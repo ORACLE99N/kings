@@ -1,21 +1,30 @@
 body{
-    background-image: url( kingsmen.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-    background-attachment: fixed;
-    
+
+    background: linear-gradient(45deg, #1a0000, #4b0000,  #5a0505, #800000,  #ff0000, #ff4500);
+    background-size: 400% 400%;
+    animation: fireGradient 10s ease infinite;
+    color: #f5f5f5;
+    text-align: center;
    
 }
 
-button{
+button, .enter-btn{
   height: 60px;
   width: 200px;
   background: none;
   color: rgb(250, 250, 250);
   text-decoration: none;
   font-size: 30px;
- 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  border: 2px solid transparent; /* default border */
+}
+
+/* Ensure link doesn't mess up styles */
+.enter-btn-link {
+    text-decoration: none;
 }
 
 .km{
@@ -24,7 +33,7 @@ button{
     margin-top: 300px;
 }
 
-button:hover {
+button:hover, .enter-btn:hover {
   animation: shake 0.3s ease-in-out infinite;
 }
 
@@ -34,4 +43,32 @@ button:hover {
   50% { transform: translateX(3px); }
   75% { transform: translateX(-3px); }
   100% { transform: translateX(0); }
+}
+
+#lobby-toast{
+  position: fixed;
+  top: 25px;
+  left: 50%;
+  transform: translateX(-50%) scale(0.95);
+  background: linear-gradient(180deg, #1a0000, #000);
+  color: #fff;
+  padding:14px 40px;
+  border-radius: 6px;
+  font-size: 18px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border: 2px solid #ff1a1a;
+  box-shadow: 
+   0 0 10px rgba(255, 0, 0, 0.6),
+   0 0 25px rgba(255, 0, 0, 0.4);
+  opacity:0;
+  pointer-events: none;
+  transition: all 0.4s ease;
+  z-index: 9999;
+}
+
+#lobby-toast.show{
+  opacity: 1;
+  transform: translateX(-50%) scale(1);
 }

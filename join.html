@@ -1,71 +1,196 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Join Kingsmen Guild</title>
-<style>
-body { margin:0; font-family:Arial,sans-serif; background: radial-gradient(circle at top,#2b0000,#000); color:#fff;}
-.container {max-width:500px;margin:60px auto;padding:30px;background: rgba(20,0,0,0.9); border:2px solid #ff1a1a;border-radius:12px;box-shadow:0 0 25px rgba(255,0,0,0.4);}
-h1 {text-align:center;color:#ff1a1a;margin-bottom:25px;}
-label {display:block;margin-top:15px;font-weight:bold;}
-input,select {width:100%;padding:10px;margin-top:5px;background:#0f0000;color:#fff;border:1px solid #ff1a1a;border-radius:6px;}
-select option {background:#000;}
-.requirements {margin-top:20px;padding:15px;border:1px solid #ff1a1a;border-radius:8px;background: rgba(255,0,0,0.05);}
-.requirements ul {padding-left:20px;}
-.requirements li {margin-bottom:8px;}
-.agree {margin-top:15px;}
-button {width:100%;margin-top:25px;padding:14px;background:linear-gradient(90deg,#ff1a1a,#b30000);color:#fff;border:none;border-radius:8px;font-size:16px;cursor:pointer;box-shadow:0 0 15px rgba(255,0,0,0.6);}
-button:hover {box-shadow:0 0 25px rgba(255,0,0,0.9);}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Join Kingsmen Guild</title>
+  <link rel="stylesheet" href="load.css">
+  <link rel="stylesheet" href="join.css">
+  <link rel="icon" type="image/jpg" href="logo.jpg">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      color: #fff;
+    }
+
+    .container {
+      max-width: 500px;
+      margin: 60px auto;
+      padding: 30px;
+      background: rgba(20, 0, 0, 0.9);
+      border: 2px solid #ff1a1a;
+      border-radius: 12px;
+      box-shadow: 0 0 25px rgba(255, 0, 0, 0.4);
+    }
+
+    h1 {
+      text-align: center;
+      color: #ff1a1a;
+      margin-bottom: 25px;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    input,
+    select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      background: #0f0000;
+      color: #fff;
+      border: 1px solid #ff1a1a;
+      border-radius: 6px;
+    }
+
+    select option {
+      background: #000;
+    }
+
+    .requirements {
+      margin-top: 20px;
+      padding: 15px;
+      border: 1px solid #ff1a1a;
+      border-radius: 8px;
+      background: rgba(255, 0, 0, 0.05);
+    }
+
+    .requirements ul {
+      padding-left: 20px;
+    }
+
+    .requirements li {
+      margin-bottom: 8px;
+    }
+
+    .agree {
+      margin-top: 15px;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 25px;
+      padding: 14px;
+      background: linear-gradient(90deg, #ff1a1a, #b30000);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      box-shadow: 0 0 15px rgba(255, 0, 0, 0.6);
+    }
+
+    button:hover {
+      box-shadow: 0 0 25px rgba(255, 0, 0, 0.9);
+    }
+  </style>
 </head>
+
 <body>
+  <nav>
+    <input type="checkbox" id="sidebar-active">
+    <label for="sidebar-active" class="open-sidebar-button">
+      <svg xmlns="http://www.w3.org/2000/svg" height="32px" viewBox="0 -960 960 960" width="32px" fill="#1f1f1f">
+        <path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z" />
+      </svg>
+    </label>
 
-<div class="container">
-<h1>Join Kingsmen Guild</h1>
+    <label id="overlay" for="sidebar-active"></label>
+    <div class="links-container">
+      <label for="sidebar-active" class="close-sidebar-button">
+        <svg xmlns="http://www.w3.org/2000/svg" height="32px" viewBox="0 -960 960 960" width="32px" fill="#1f1f1f">
+          <path d="m256-200-56-56 224-224-224-224 56-56 224 224 224-224 56 56-224 224 224 224-56 56-224-224-224 224Z" />
+        </svg>
+      </label>
 
-<form id="guildForm">
+      <a class="home-link" href="home.html">home</a>
+      <a href="high.html">Highlights</a>
+      <a href="rule.html">Guild rules</a>
+      <a href="contact.html">Contact</a>
+      <a href="index.html">Log out</a>
+    </div>
+  </nav>
 
-  <label>Gamer Tag / Name</label>
-  <input type="text" id="name" required>
 
-  <label>Weapon of Choice</label>
-  <input type="text" id="weapon" required>
+  <div id="top-loader"></div>
+  <div class="container">
+    <h1>Join Kingsmen Guild</h1>
 
-  <label>Play Style</label>
-  <select id="style" required>
-    <option value="">Select Play Style</option>
-    <option value="Rusher – Aggressive front-line attacker">Rusher – Aggressive front-line attacker</option>
-    <option value="Sniper – Long-range precision shooter">Sniper – Long-range precision shooter</option>
-    <option value="Support – Team healer & backup">Support – Team healer & backup</option>
-    <option value="All-rounder – Balanced gameplay">All-rounder – Balanced gameplay</option>
-  </select>
+    <form id="guildForm">
 
-  <label>Level</label>
-  <input type="number" id="level" required>
+      <label>Gamer Tag / Name</label>
+      <input type="text" id="name" required>
 
-  <label>Age</label>
-  <input type="number" id="age" required>
+      <label>Weapon of Choice</label>
+      <input type="text" id="weapon" required>
 
-  <div class="requirements">
-    <strong>Guild Requirements:</strong>
-    <ul>
-      <li>All players must change names to the guild symbol within 2 weeks</li>
-      <li>Every player must be level 55 or above</li>
-      <li>Every player is expected to play Guild Wars</li>
-    </ul>
+      <label>Play Style</label>
+      <select id="style" required>
+        <option value="">Select Play Style</option>
+        <option value="Rusher – Aggressive front-line attacker">Rusher – Aggressive front-line attacker</option>
+        <option value="Sniper – Long-range precision shooter">Sniper – Long-range precision shooter</option>
+        <option value="Support – Team healer & backup">Support – Team healer & backup</option>
+        <option value="All-rounder – Balanced gameplay">All-rounder – Balanced gameplay</option>
+      </select>
+
+      <label>Level</label>
+      <input type="number" id="level" required>
+
+      <label>Age</label>
+      <input type="number" id="age" required>
+
+      <div class="requirements">
+        <strong>Guild Requirements:</strong>
+        <ul>
+          <li>All players must change names to the guild symbol within 2 weeks</li>
+          <li>Every player must be level 55 or above</li>
+          <li>Every player is expected to play Guild Wars</li>
+        </ul>
+      </div>
+
+      <div class="agree">
+        <input type="checkbox" id="agree" required>
+        <label for="agree">I agree to the terms and requirements</label>
+      </div>
+
+      <button type="submit">Send Application</button>
+    </form>
   </div>
 
-  <div class="agree">
-    <input type="checkbox" id="agree" required>
-    <label for="agree">I agree to the terms and requirements</label>
-  </div>
-
-  <button type="submit">Send Application</button>
-</form>
-</div>
 
 
+  <script src="loader.js"></script>
+  <script>
+    document.getElementById("guildForm").addEventListener("submit", function (e) {
+      e.preventDefault();
 
+      const name = document.getElementById("name").value;
+      const weapon = document.getElementById("weapon").value;
+      const style = document.getElementById("style").value;
+      const level = document.getElementById("level").value;
+      const age = document.getElementById("age").value;
+
+      const message = `*KINGSMEN GUILD APPLICATION*
+--------------------------------
+*Name/Tag:* ${name}
+*Weapon:* ${weapon}
+*Play Style:* ${style}
+*Level:* ${level}
+*Age:* ${age}
+--------------------------------
+I have read and agreed to the requirements.`;
+
+      const phoneNumber = "2349018526817"; // Country code +234
+      const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+
+      window.open(url, "_blank");
+    });
+  </script>
 </body>
+
 </html>

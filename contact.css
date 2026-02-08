@@ -107,7 +107,7 @@ body {
     margin: 0;
     font-family: 'Arial', sans-serif;
     /* Firey background */
-    background: linear-gradient(45deg, #1a0000, #4b0000, #800000, #ff0000, #ff4500);
+    background: linear-gradient(45deg, #1a0000, #4b0000, #5a0505, #800000, #ff0000, #ff4500);
     background-size: 400% 400%;
     animation: fireGradient 10s ease infinite;
     color: #f5f5f5;
@@ -179,4 +179,83 @@ h2 {
     padding: 20px;
     width: 120px;
     border-radius: 10px;
+}
+
+/* Contact Form Styles */
+.container {
+    max-width: 700px;
+    margin: auto;
+    border: 2px solid red;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 0 25px red;
+    margin-top: 80px;
+    /* Added top margin to clear nav bar */
+}
+
+.container h1,
+.container h2 {
+    text-align: center;
+    color: #ff4444;
+}
+
+.container p {
+    text-align: center;
+    color: #ddd;
+}
+
+label {
+    display: block;
+    margin-top: 15px;
+    font-weight: bold;
+    text-align: left;
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 6px;
+    border: none;
+    outline: none;
+    box-sizing: border-box;
+    /* Ensure padding doesn't affect width */
+    background: #333;
+    color: white;
+}
+
+textarea {
+    resize: none;
+    height: 120px;
+}
+
+.container button {
+    width: 100%;
+    margin-top: 20px;
+    padding: 14px;
+    font-size: 16px;
+    background: red;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.container button:hover {
+    background: darkred;
+}
+
+.note {
+    background: rgba(255, 0, 0, 0.15);
+    padding: 10px;
+    margin-top: 15px;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.divider {
+    margin: 40px 0;
+    border-top: 2px solid red;
 }
