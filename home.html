@@ -12,6 +12,14 @@
 
 <body>
   <div id="top-loader"></div>
+  
+  <!-- Welcome Popup -->
+  <div id="welcome-popup" class="popup-overlay">
+    <div class="popup-content">
+      <h2>WELCOME TO THE LOBBY</h2>
+    </div>
+  </div>
+
   <nav>
     <input type="checkbox" id="sidebar-active" />
     <label for="sidebar-active" class="open-sidebar-button">
@@ -65,6 +73,21 @@
     </div>
   </main>
   <script src="loader.js"></script>
+  
+  <script>
+    // Show popup every time the home page is loaded
+    document.addEventListener('DOMContentLoaded', function() {
+      const popup = document.getElementById('welcome-popup');
+      
+      // Show popup every time
+      popup.classList.add('show');
+      
+      // Auto-close after 2 seconds
+      setTimeout(function() {
+        popup.classList.remove('show');
+      }, 2000);
+    });
+  </script>
 </body>
 
 </html>

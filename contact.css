@@ -259,3 +259,8 @@ textarea {
     margin: 40px 0;
     border-top: 2px solid red;
 }
+
+.creator-info {
+    margin-top: 10px;
+    font-size: 14px;
+}

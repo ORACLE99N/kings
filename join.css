@@ -180,3 +180,78 @@ h2 {
     width: 120px;
     border-radius: 10px;
 }
+
+/* Form Styles */
+.container {
+    max-width: 500px;
+    margin: 60px auto;
+    padding: 30px;
+    background: rgba(20, 0, 0, 0.9);
+    border: 2px solid #ff1a1a;
+    border-radius: 12px;
+    box-shadow: 0 0 25px rgba(255, 0, 0, 0.4);
+}
+
+.container h1 {
+    text-align: center;
+    color: #ff1a1a;
+    margin-bottom: 25px;
+}
+
+.container label {
+    display: block;
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+.container input,
+.container select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    background: #0f0000;
+    color: #fff;
+    border: 1px solid #ff1a1a;
+    border-radius: 6px;
+}
+
+.container select option {
+    background: #000;
+}
+
+.requirements {
+    margin-top: 20px;
+    padding: 15px;
+    border: 1px solid #ff1a1a;
+    border-radius: 8px;
+    background: rgba(255, 0, 0, 0.05);
+}
+
+.requirements ul {
+    padding-left: 20px;
+}
+
+.requirements li {
+    margin-bottom: 8px;
+}
+
+.agree {
+    margin-top: 15px;
+}
+
+.container button {
+    width: 100%;
+    margin-top: 25px;
+    padding: 14px;
+    background: linear-gradient(90deg, #ff1a1a, #b30000);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.6);
+}
+
+.container button:hover {
+    box-shadow: 0 0 25px rgba(255, 0, 0, 0.9);
+}
