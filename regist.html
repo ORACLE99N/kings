@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Register</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <link rel="stylesheet" href="opening.css">
+  <link rel="stylesheet" href="load.css">
+  <style>
+    body, html {
+      height: 100%;
+      margin: 0;
+      font-family: 'Audiowide', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .card {
+      background: rgba(0,0,0,0.6);
+      padding: 40px;
+      border-radius: 10px;
+      width: 320px;
+      max-width: 90vw;
+      text-align: center;
+      color: #fff;
+    }
+    .card img {
+      width: 100px;
+      margin-bottom: 20px;
+    }
+    input {
+      font-family: 'Audiowide', sans-serif;
+      width: 100%;
+      padding: 8px;
+      margin: 8px 0;
+      border: none;
+      border-radius: 5px;
+    }
+    ::placeholder {
+      font-family: 'Audiowide', sans-serif;
+      color: #ff7a00;
+    }
+    button {
+      font-family: 'Audiowide', sans-serif;
+      width: 100%;
+      padding: 8px;
+      margin: 10px 0;
+      border: 2px solid #ff7a00;
+      border-radius: 5px;
+      background: transparent;
+      color: #ff7a00;
+      cursor: pointer;
+      transition: background 0.7s, color 0.7s;
+    }
+    button:hover {
+      background: #00ffff;
+      color: #000;
+    }
+    .optional-field {
+      position: relative;
+    }
+    .optional-badge {
+      position: absolute;
+      right: 10px;
+      top: 10px;
+      font-size: 0.8rem;
+      color: #888;
+    }
+    /* OTP Modal Styles */
+    #otpModal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.8);
+      z-index: 1000;
+      justify-content: center;
+      align-items: center;
+    }
+    #otpModal > div {
+      background: #222;
+      padding: 2rem;
+      border-radius: 10px;
+      text-align: center;
+      width: 300px;
+      max-width: 90vw;
+    }
+    #otpCode {
+      font-size: 1.5rem;
+      text-align: center;
+      letter-spacing: 0.5rem;
+      padding: 10px;
+      width: 80%;
+      margin: 1rem auto;
+    }
+    #otpStatus {
+      margin-top: 1rem;
+      min-height: 1.5rem;
+      color: #00ffff;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <img src="logo.png" alt="logo">
+    <h2>Register</h2>
+    <input id="username" placeholder="Username" required>
+    <input id="email" type="email" placeholder="Email Address" required>
+    <input id="confirmEmail" type="email" placeholder="Confirm Email Address" required>
+    
+    <div class="optional-field">
+      <input id="phone" placeholder="Phone Number (Optional)">
+      <span class="optional-badge">Optional</span>
+    </div>
+    
+    <input id="password" type="password" placeholder="Password (min 6 characters)" required>
+    <input id="confirmPassword" type="password" placeholder="Confirm Password" required>
+    
+    <div class="flex-buttons">
+      <button onclick="createAccount()">Create Account</button>
+      <a href="login-email.html"><button>Already have an Account</button></a>
+    </div>
+    <div id="statusMessage" style="margin-top: 15px; color: #00ffff;"></div>
+  </div>
+
+  <!-- OTP Verification Modal (only shown if phone provided) -->
+  <div id="otpModal">
+    <div>
+      <h3>Verify Phone</h3>
+      <p>Enter the 6-digit code sent to your phone</p>
+      <input type="text" id="otpCode" placeholder="______" maxlength="6" pattern="\d{6}">
+      <button onclick="verifyOTP()">Verify</button>
+      <p id="otpStatus"></p>
+    </div>
+  </div>
+
+  
+  <script src="regist.js"></script>
+  <script>
+    const usernameInput = document.getElementById("username");
+  const usernameStatus = document.createElement("small");
+  usernameStatus.style.display = "block";
+  usernameStatus.style.color = "#00ffff";
+  usernameInput.parentNode.insertBefore(usernameStatus, usernameInput.nextSibling);
+
+  usernameInput.addEventListener('blur', async () => {
+    const username = usernameInput.value.trim();
+    if(username.length < 3) return;
+    
+    const { data } = await supabaseClient
+      .from('profiles')
+      .select('username')
+      .eq('username', username)
+      .single();
+
+    usernameStatus.textContent = data ? "❌ Username taken" : "✓ Available";
+  });
+  </script>
+</body>
+</html>
