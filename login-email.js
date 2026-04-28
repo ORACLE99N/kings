@@ -12,7 +12,7 @@ const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
             localStorage.removeItem('cartItems');
             
             // 3. Redirect to index
-            window.location.href = 'index.html';
+            window.location.href = 'home.html';
         });
 
 async function login() {
@@ -41,7 +41,7 @@ async function login() {
     }
     
     // Redirect after 1 second
-    setTimeout(() => window.location.href = "/WAD-FOOD-WEB/index.html", 1000);
+    setTimeout(() => window.location.href = "/kings/home.html", 1000);
     
   } catch (error) {
     if (messageEl) {
