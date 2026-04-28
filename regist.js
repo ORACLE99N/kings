@@ -90,7 +90,7 @@ async function createAccount() {
     } else {
       statusEl.textContent = "Account created! Check your email to verify.";
       setTimeout(() => {
-        window.location.href = "login-email.html";
+        window.location.href = "index.html";
       }, 3000);
     }
     
@@ -130,7 +130,7 @@ async function verifyOTP() {
     if (loginError) throw loginError;
 
     statusEl.textContent = "✓ Verified! Redirecting...";
-    setTimeout(() => window.location.href = "index.html", 1500);
+    setTimeout(() => window.location.href = "home.html", 1500);
   } catch (error) {
     statusEl.textContent = `Error: ${error.message}`;
   }
