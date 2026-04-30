@@ -17,6 +17,7 @@ const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
 
 async function login() {
   const email = document.getElementById('email').value;
+  const username = document.getElementById('email').value;
   const password = document.getElementById('password').value;
   
   
@@ -29,7 +30,7 @@ async function login() {
   try {
     const { data, error } = await supabaseClient.auth.signInWithPassword({
       email: email,
-      password: password
+      password: password 
     });
 
     if (error) throw error;
@@ -58,7 +59,7 @@ document.getElementById("password").addEventListener('keypress', (e) => {
 
 // Check if coming from registration
 if (window.location.search.includes('from_registration=1')) {
-  document.getElementById('email').value = localStorage.getItem('temp_reg_email') || '';
+  document.getElementById('email').value || document.getElementById('username').value = localStorage.getItem('temp_reg_email') || localStorage.getItem('temp_reg_username') || '';
   localStorage.removeItem('temp_reg_email');
 }
 
