@@ -69,11 +69,17 @@ async function createAccount() {
           email: email
         });
 
-        if (profileError) {
-        console.error("Profile insert error:", profileError);
-        statusEl.textContent = "Username may already exist!";
-        return;
-      }
+       if (profileError) {
+  console.error("Profile insert error:", profileError);
+
+  if (profileError.code === "23505") {
+    statusEl.textContent = "Username already taken!";
+  } else {
+    statusEl.textContent = "Failed to save profile: " + profileError.message;
+  }
+
+  return;
+}
       }
     
     
