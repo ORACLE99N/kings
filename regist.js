@@ -41,17 +41,16 @@ async function createAccount() {
   }
 
   statusEl.textContent = "Creating account...";
-  
+
   try {
-    // Create account with email/password
+    // 1. Create Supabase Auth user
     const { data, error } = await supabaseClient.auth.signUp({
       email,
       password,
       options: {
         data: {
           username,
-          ...(phone && { phone }),
-          email_verified: false
+          phone: phone || null
         }
       }
     });
@@ -60,47 +59,31 @@ async function createAccount() {
 
     registeredEmail = email;
 
-      if (data.user) {
+    // 2. SAFE profile creation (USING data.user ONLY)
+    const user = data?.user;
+
+    if (user) {
       const { error: profileError } = await supabaseClient
         .from('profiles')
-        .insert({
-          id: data.user.id,
+        .upsert({
+          id: user.id,
           username: username,
           email: email
         });
 
-       if (profileError) {
-  console.error("Profile insert error:", profileError);
-
-  if (profileError.code === "23505") {
-    statusEl.textContent = "Username already taken!";
-  } else {
-    statusEl.textContent = "Failed to save profile: " + profileError.message;
-  }
-
-  return;
-}
+      if (profileError) {
+        console.error("Profile error:", profileError);
+        statusEl.textContent = profileError.message;
+        return;
       }
-    
-    
-    if (phone) {
-      await supabaseClient.auth.updateUser({
-        password
-      });
     }
 
-    
-    const { error: emailError } = await supabaseClient.auth.resend({
-      type: 'signup',
-      email: email
-    });
-
-    if (emailError) console.error("Email verification error:", emailError);
-
-    
+    // 3. Phone OTP (if provided)
     if (phone) {
+      verificationPhone = phone;
+
       statusEl.textContent = "Sending verification code...";
-      
+
       const { error: otpError } = await supabaseClient.auth.signInWithOtp({
         phone
       });
@@ -110,12 +93,12 @@ async function createAccount() {
       document.getElementById("otpModal").style.display = "flex";
       document.getElementById("otpCode").focus();
     } else {
-      statusEl.textContent = "Account created! Check your email to verify.";
+      statusEl.textContent = "Account created! Check your email.";
       setTimeout(() => {
         window.location.href = "index.html";
       }, 3000);
     }
-    
+
   } catch (error) {
     statusEl.textContent = `Error: ${error.message}`;
     console.error("Registration error:", error);
@@ -125,16 +108,16 @@ async function createAccount() {
 async function verifyOTP() {
   const otp = document.getElementById("otpCode").value;
   const statusEl = document.getElementById("otpStatus");
-  
+
   if (!otp || otp.length !== 6 || !/^\d+$/.test(otp)) {
     statusEl.textContent = "Please enter a valid 6-digit code";
     return;
   }
 
   statusEl.textContent = "Verifying...";
-  
+
   try {
-    const { data, error } = await supabaseClient.auth.verifyOtp({
+    const { error } = await supabaseClient.auth.verifyOtp({
       phone: verificationPhone,
       token: otp,
       type: 'sms'
@@ -142,8 +125,9 @@ async function verifyOTP() {
 
     if (error) throw error;
 
-    
+    // login after OTP
     const password = document.getElementById("password").value;
+
     const { error: loginError } = await supabaseClient.auth.signInWithPassword({
       email: registeredEmail,
       password
@@ -153,11 +137,13 @@ async function verifyOTP() {
 
     statusEl.textContent = "✓ Verified! Redirecting...";
     setTimeout(() => window.location.href = "home.html", 1500);
+
   } catch (error) {
     statusEl.textContent = `Error: ${error.message}`;
   }
 }
 
+// OTP enter key support
 document.getElementById("otpCode").addEventListener('keypress', (e) => {
   if (e.key === 'Enter') verifyOTP();
 });
