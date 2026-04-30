@@ -59,15 +59,31 @@ async function createAccount() {
     if (error) throw error;
 
     registeredEmail = email;
+
+      if (data.user) {
+      const { error: profileError } = await supabaseClient
+        .from('profiles')
+        .insert({
+          id: data.user.id,
+          username: username,
+          email: email
+        });
+
+        if (profileError) {
+        console.error("Profile insert error:", profileError);
+        statusEl.textContent = "Username may already exist!";
+        return;
+      }
+      }
     
-    // If phone provided, update user with same password
+    
     if (phone) {
       await supabaseClient.auth.updateUser({
-        password // Same password for phone auth
+        password
       });
     }
 
-    // Send verification email
+    
     const { error: emailError } = await supabaseClient.auth.resend({
       type: 'signup',
       email: email
@@ -75,7 +91,7 @@ async function createAccount() {
 
     if (emailError) console.error("Email verification error:", emailError);
 
-    // If phone provided, send OTP
+    
     if (phone) {
       statusEl.textContent = "Sending verification code...";
       
@@ -120,7 +136,7 @@ async function verifyOTP() {
 
     if (error) throw error;
 
-    // Auto-login with email/password
+    
     const password = document.getElementById("password").value;
     const { error: loginError } = await supabaseClient.auth.signInWithPassword({
       email: registeredEmail,
