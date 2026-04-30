@@ -16,11 +16,9 @@ const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
         });
 
 async function login() {
-  const email = document.getElementById('email').value;
-  const username = document.getElementById('email').value;
+  const input = document.getElementById('email').value.trim(); // username OR email
   const password = document.getElementById('password').value;
-  
-  
+
   const messageEl = document.getElementById('message');
   if (!messageEl) {
     console.error("Message element not found");
@@ -28,30 +26,48 @@ async function login() {
   }
 
   try {
-    const { data, error } = await supabaseClient.auth.signInWithPassword({
-      email: email,
-      password: password 
+    let emailToUse = input;
+
+    // 🔥 If NOT email → treat as username
+    if (!input.includes("@")) {
+      const { data, error } = await supabaseClient
+        .from('profiles')
+        .select('email')
+        .eq('username', input)
+        .single();
+
+      if (error || !data) {
+        messageEl.textContent = "Username not found";
+        messageEl.className = "error";
+        messageEl.style.display = "block";
+        return;
+      }
+
+      emailToUse = data.email;
+    }
+
+    // 🔥 Login using resolved email
+    const { error } = await supabaseClient.auth.signInWithPassword({
+      email: emailToUse,
+      password: password
     });
 
     if (error) throw error;
-    
-    if (messageEl) {
-      messageEl.textContent = "Login successful! Redirecting...";
-      messageEl.className = "success";
-      messageEl.style.display = "block";
-    }
-    
-    // Redirect after 1 second
+
+    messageEl.textContent = "Login successful! Redirecting...";
+    messageEl.className = "success";
+    messageEl.style.display = "block";
+
     setTimeout(() => window.location.href = "/kings/home.html", 1000);
-    
+
   } catch (error) {
-    if (messageEl) {
-      messageEl.textContent = error.message;
-      messageEl.className = "error";
-      messageEl.style.display = "block";
-    }
+    messageEl.textContent = error.message;
+    messageEl.className = "error";
+    messageEl.style.display = "block";
   }
 }
+}
+
 
 document.getElementById("password").addEventListener('keypress', (e) => {
   if (e.key === 'Enter') login();
