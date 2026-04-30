@@ -65,7 +65,7 @@ async function login() {
     messageEl.className = "error";
     messageEl.style.display = "block";
   }
-}
+
 }
 
 
