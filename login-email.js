@@ -29,23 +29,7 @@ async function login() {
     let emailToUse = input;
 
     // 🔥 If NOT email → treat as username
-    if (!input.includes("@")) {
-      const { data, error } = await supabaseClient
-        .from('profiles')
-        .select('email')
-        .eq('username', input)
-        .single();
-
-      if (error || !data) {
-        messageEl.textContent = "Username not found";
-        messageEl.className = "error";
-        messageEl.style.display = "block";
-        return;
-      }
-
-      emailToUse = data.email;
-    }
-
+    
     // 🔥 Login using resolved email
     const { error } = await supabaseClient.auth.signInWithPassword({
       email: emailToUse,
@@ -75,7 +59,7 @@ document.getElementById("password").addEventListener('keypress', (e) => {
 
 // Check if coming from registration
 if (window.location.search.includes('from_registration=1')) {
-  document.getElementById('email').value || document.getElementById('username').value = localStorage.getItem('temp_reg_email') || localStorage.getItem('temp_reg_username') || '';
+  document.getElementById('email').value = localStorage.getItem('temp_reg_email') || '';
   localStorage.removeItem('temp_reg_email');
 }
 
