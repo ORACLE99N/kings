@@ -1,1 +1,67 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KINGS | Profile</title>
+
+    <link rel="stylesheet" href="profile.css">
+</head>
+<body>
+
+<div class="profile-container">
+
+    <div class="banner"></div>
+
+    <div class="profile-card">
+
+        <img id="avatar" src="images/default-avatar.png" class="avatar">
+
+        <h2 id="username">Loading...</h2>
+
+        <span id="rank" class="rank">Member</span>
+
+        <div class="info">
+
+            <p>📧 <span id="email"></span></p>
+            <p>🆔 <span id="userid"></span></p>
+            <p>📅 Joined <span id="joined"></span></p>
+
+        </div>
+
+        <div class="stats">
+
+            <div class="stat">
+                <h3 id="level">1</h3>
+                <p>Level</p>
+            </div>
+
+            <div class="stat">
+                <h3 id="xp">0</h3>
+                <p>XP</p>
+            </div>
+
+            <div class="stat">
+                <h3 id="missions">0</h3>
+                <p>Missions</p>
+            </div>
+
+        </div>
+
+        <button class="edit-btn">
+            Edit Profile
+        </button>
+
+        <button class="logout-btn" onclick="logout()">
+            Logout
+        </button>
+
+    </div>
+
+</div>
+
+<script type="module" src="profile.js"></script>
+
+</body>
+</html>
