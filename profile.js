@@ -10,10 +10,12 @@ async function loadProfile() {
         return;
     }
 
-    // Display email
+    //Display email
     document.getElementById("email").textContent = user.email;
+    //Display username
+    document.getElementById("username").textContent = user.username;
 
-    // Display joined date
+    //Display joined date
     const joinedDate = new Date(user.created_at);
     document.getElementById("joined").textContent =
         joinedDate.toLocaleDateString(undefined, {
