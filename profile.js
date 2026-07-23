@@ -25,7 +25,7 @@ async function loadProfile() {
 
 window.logout = async function () {
     await supabase.auth.signOut();
-    window.location.href = "home.html";
+    window.location.href = "index.html";
 };
 
 loadProfile();
