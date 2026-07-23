@@ -9,7 +9,7 @@ const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
             const { error } = await supabaseClient.auth.signOut();
             
             
-            localStorage.removeItem('cartItems');
+            
             
             
             window.location.href = 'home.html';
